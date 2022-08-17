@@ -14,12 +14,17 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules (libgps REQUIRED libgps)
 
 add_library(${PROJECT_NAME} SHARED
-  src/client.cpp
+  src/gpsd_client.cpp
+  src/gpsd_parser_v9.cpp
 )
+
 target_include_directories(${PROJECT_NAME}
   PUBLIC
   ${libgps_INCLUDE_DIRS}
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
 )
+
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE "COMPOSITION_BUILDING_DLL"
 )
