@@ -10,6 +10,9 @@ find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
 
 set(MSG_FILES
+  msg/GNSSFix.msg
+  msg/GNSSSatellite.msg
+  msg/GNSSStatus.msg
   msg/GPSFix.msg
   msg/GPSStatus.msg
 )
