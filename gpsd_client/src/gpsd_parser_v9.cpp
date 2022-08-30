@@ -90,10 +90,47 @@ int8_t GpsdParserV9::map_freq(const int8_t gnss_id, const int8_t freq_id)
 {
   const std::map<int8_t, std::map<int8_t, int8_t>> freq_map =
   {
-    {gps_msgs::msg::GNSSSatellite::GNSS_ID_GPS, {
+    {gps_msgs::msg::GNSSSatellite::GNSS_ID_GPS,
+      {
       {0, gps_msgs::msg::GNSSSatellite::SIG_ID_GPS_L1CA},
       {3, gps_msgs::msg::GNSSSatellite::SIG_ID_GPS_L2_CL},
-      {4, gps_msgs::msg::GNSSSatellite::SIG_ID_GPS_L2_CM}}}
+      {4, gps_msgs::msg::GNSSSatellite::SIG_ID_GPS_L2_CM}
+      }
+    },
+    {gps_msgs::msg::GNSSSatellite::GNSS_ID_SBAS,
+      {
+      {0, gps_msgs::msg::GNSSSatellite::SIG_ID_SBAS_L1CA}
+      }
+    },
+    {gps_msgs::msg::GNSSSatellite::GNSS_ID_GALILEO,
+      {
+      {0, gps_msgs::msg::GNSSSatellite::SIG_ID_GALILEO_E1_C},
+      {1, gps_msgs::msg::GNSSSatellite::SIG_ID_GALILEO_E1_B},
+      {5, gps_msgs::msg::GNSSSatellite::SIG_ID_GALILEO_E5_BL},
+      {6, gps_msgs::msg::GNSSSatellite::SIG_ID_GALILEO_E5_BQ}
+      }
+    },
+    {gps_msgs::msg::GNSSSatellite::GNSS_ID_BEIDOU,
+      {
+      {0, gps_msgs::msg::GNSSSatellite::SIG_ID_BEIDOU_B1I_D1},
+      {1, gps_msgs::msg::GNSSSatellite::SIG_ID_BEIDOU_B1I_D2},
+      {2, gps_msgs::msg::GNSSSatellite::SIG_ID_BEIDOU_B2I_D1},
+      {3, gps_msgs::msg::GNSSSatellite::SIG_ID_BEIDOU_B2I_D2}
+      },
+    },
+    {gps_msgs::msg::GNSSSatellite::GNSS_ID_QZSS,
+      {
+      {0, gps_msgs::msg::GNSSSatellite::SIG_ID_QZSS_L1CA},
+      {4, gps_msgs::msg::GNSSSatellite::SIG_ID_QZSS_L2_CM},
+      {5, gps_msgs::msg::GNSSSatellite::SIG_ID_QZSS_L2_CL}
+      }
+    },
+    {gps_msgs::msg::GNSSSatellite::GNSS_ID_GLONASS,
+      {
+      {0, gps_msgs::msg::GNSSSatellite::SIG_ID_GLONASS_L1_OF},
+      {2, gps_msgs::msg::GNSSSatellite::SIG_ID_GLONASS_L2_OF},
+      }
+    }
   };
 
   return 0;

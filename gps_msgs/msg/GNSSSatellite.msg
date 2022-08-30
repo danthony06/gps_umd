@@ -17,7 +17,7 @@ int8 GNSS_ID_GALILEO=2
 int8 GNSS_ID_BEIDOU=3
 int8 GNSS_ID_IMES=4 # Indoor messaging system
 int8 GNSS_ID_QZSS=5 # Quasi-zenith satellite system
-int8 GNSS_ID_GLO=6 # GLONASS
+int8 GNSS_ID_GLONASS=6 # GLONASS
 int8 GNSS_ID_IRNSS=7 # India regional navigation satellite system
 
 # Signal ID, as defined by U-blox 9
