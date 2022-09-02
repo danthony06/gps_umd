@@ -35,8 +35,7 @@ bool GpsdParser::getData(
   return pimpl_->getData(fix_msg, status_msg);
 }
 
-
-void GpsdParser::initalizeMessages(
+void GpsdParser::initializeMessages(
   gps_msgs::msg::GNSSFix& fix_msg,
   gps_msgs::msg::GNSSStatus& status_msg)
 {
@@ -83,5 +82,4 @@ void GpsdParser::initalizeMessages(
 
   fix_msg.status = status_msg;
 }
-
 }

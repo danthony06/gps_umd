@@ -20,13 +20,14 @@ class GpsdParser
       gps_msgs::msg::GNSSStatus& status_msg);
     
     private:
+      class GpsdParserImpl; std::unique_ptr<GpsdParserImpl> pimpl_;
+
       // This is a workaround to current limitations in the rosidl message
       // initialization
       void initializeMessages(
         gps_msgs::msg::GNSSFix& fix_msg,
         gps_msgs::msg::GNSSStatus& status_msg);
 
-      class GpsdParserImpl; std::unique_ptr<GpsdParserImpl> pimpl_;
 };
 
 }
