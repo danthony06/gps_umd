@@ -20,14 +20,17 @@ float64 altitude
 # Course made good relative to true north
 float64 track
 
+# Course made good track relative to magnetic north
+float64 track_magnetic
+
+# Magnetic variation in degrees
+float64 magnetic_var
+
 # Speed over ground (meters/second)
 float64 speed
 
 # Vertical speed (meters/second)
 float64 climb
-
-# GPS time
-float64 time
 
 ## Dilution of precision values
 
@@ -70,11 +73,15 @@ float64 err_climb
 # Temporal uncertainty [ept]
 float64 err_time
 
-# Needs to be one of the constants defined below
-int8 fix_status
+float64 err_latitude
+float64 err_longitude
 
-int8 FIX_UNKNOWN = 0
-int8 FIX_NORMAL = 1
+# Needs to be one of the constants defined below
+int8 fix_type
+
+int8 FIX_UNKNOWN = -1
+int8 FIX_NONE = 0
+int8 FIX_BASIC = 1
 int8 FIX_DGPS = 2
 int8 FIX_RTK_FIXED = 3
 int8 FIX_RTK_FLOATING = 4

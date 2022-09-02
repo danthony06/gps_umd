@@ -21,7 +21,8 @@ int8 GNSS_ID_GLONASS=6 # GLONASS
 int8 GNSS_ID_IRNSS=7 # India regional navigation satellite system
 
 # Signal ID, as defined by U-blox 9
-int8 SIG_ID_INVALID=-1
+int8 SIG_ID_UNKNOWN=-2 # GPSD gave us a value, but we do not understand how to process it
+int8 SIG_ID_INVALID=-1 # Signal ID wasn't valid either GPSD doesn't know it, or it wasn't sent
 int8 SIG_ID_GPS_L1CA=0 # L1C/A
 int8 SIG_ID_GPS_L2_CL=1 # L2 CL
 int8 SIG_ID_GPS_L2_CM=2 # L2 CM
