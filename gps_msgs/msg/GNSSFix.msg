@@ -4,9 +4,21 @@
 # because that struct contains additional, non-GNSS related data,
 # and is not a stable interface. Unless otherwise noted, invalid or
 # not provided values will be NaNs
+
+# The frame ID in the header is the reference from of the receiver,
+# which is probably the location of the antenna. This is a Euclidean
+# frame, not an ellipsoid reference
+#
+# The time is when the ROS system generated this message, not the
+# time associated with the position measurement. This is because if
+# we do not have a fix from the receiver, we can still appropriately
+# stamp this message
 std_msgs/Header header
 
 GNSSStatus status
+
+# Timestamp associated with when the GNSS measurement was taken
+builtin_interfaces/Time time
 
 # Latitude (degrees). Positive is north of equator; negative is south.
 float64 latitude
@@ -73,6 +85,7 @@ float64 err_climb
 # Temporal uncertainty [ept]
 float64 err_time
 
+# Error in latitude and longitude measurement components
 float64 err_latitude
 float64 err_longitude
 
@@ -93,7 +106,7 @@ int8 FIX_P_Y_CODE = 9
 
 # Datum the values are referenced in. Probably WGS-84, but early
 # versions of GPSD did not report this. As of GPSD v14, this is limited
-# to 40 characters.
-string[<=40] datum
+# to 40 characters. The upper bound is set higher for future compatibility.
+string[<=64] datum
 
-string DEFAULT_DATUM = "NOT REPORTED"
+string DEFAULT_DATUM = "UNKNOWN"

@@ -22,18 +22,18 @@ bool GpsdParserV9::getData(
       gps_msgs::msg::GNSSFix& fix_msg,
       gps_msgs::msg::GNSSStatus& status_msg)
 {
-  if (gps_ == nullptr || !gps_->is_open()) { return false; }
+  initialize_messages(fix_msg, status_msg);
+  if (gps_ == nullptr || !gps_->is_open() || !gps_->waiting(1e6)) { return false; }
 
   // The read() call returns a raw pointer to an internal class member. The access
   // is not thread safe, and the class maintains ownership over the data, so do not
   // free the memory in this function.
-  if (!gps_->waiting(1e6)) {return false; }
   gps_data_t* p = gps_->read();
   if (p == nullptr) { return false; }
   if (!(p->online.tv_sec || p->online.tv_nsec)) { return false; }
 
-  fix_msg.header.stamp.sec = p->fix.time.tv_sec;
-  fix_msg.header.stamp.nanosec = p->fix.time.tv_nsec;
+  fix_msg.time.sec = p->fix.time.tv_sec;
+  fix_msg.time.nanosec = p->fix.time.tv_nsec;
   fix_msg.err_time = p->fix.ept;
   fix_msg.altitude = p->fix.altitude;
   fix_msg.err_vert = p->fix.epv;
