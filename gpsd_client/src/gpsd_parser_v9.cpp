@@ -55,6 +55,20 @@ bool GpsdParserV9::getData(
   fix_msg.vdop = p->dop.vdop;
   fix_msg.tdop = p->dop.tdop;
 
+  // At the time of writing, there is not a clean way of assigning a string
+  // to a bounded string type, because the bounded string type is just a
+  // vector. Instead, we do this convoluted copy technique.
+  std::string temp_datum(p->fix.datum);
+  if (temp_datum.length() == 0)
+  {
+    temp_datum = gps_msgs::msg::GNSSFix::DEFAULT_DATUM;
+  }
+  fix_msg.datum.resize(std::min(fix_msg.datum.max_size(), temp_datum.length()));
+  for (int copy_idx = 0; copy_idx < fix_msg.datum.size(); copy_idx++)
+  {
+    fix_msg.datum[copy_idx] = temp_datum.at(copy_idx);
+  }
+
   switch (p->fix.mode)
   {
     case MODE_NOT_SEEN:

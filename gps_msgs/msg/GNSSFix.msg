@@ -93,7 +93,7 @@ int8 FIX_P_Y_CODE = 9
 
 # Datum the values are referenced in. Probably WGS-84, but early
 # versions of GPSD did not report this. As of GPSD v14, this is limited
-# to 40 characters, but we give a few extra for future proofing
-string[<=64] datum
+# to 40 characters.
+string[<=40] datum
 
 string DEFAULT_DATUM = "NOT REPORTED"
