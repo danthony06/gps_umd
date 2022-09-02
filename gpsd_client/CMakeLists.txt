@@ -15,7 +15,7 @@ pkg_check_modules(libgps REQUIRED libgps)
 
 add_library(${PROJECT_NAME} SHARED
   src/gpsd_client.cpp
-  src/gpsd_parser_v9.cpp
+  src/gpsd_parser.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

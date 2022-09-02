@@ -24,7 +24,6 @@ GPSDClientComponent::GPSDClientComponent(const rclcpp::NodeOptions& options) :
   frame_id_ = this->declare_parameter<std::string>("frame_id", frame_id_);
   publish_rate_ = this->declare_parameter<int>("publish_rate", publish_rate_);
 
-
   publish_period_ms = std::chrono::milliseconds{(int)(1000 / publish_rate_)};
 
   std::string host = "localhost";
