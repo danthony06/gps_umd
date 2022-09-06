@@ -1,22 +1,9 @@
 #include <rcpputils/asserts.hpp>
 #include <gpsd_client/gpsd_parser.h>
-//#include <gpsd_client/gpsd_parser_v9.hpp>
+#include <gpsd_client/gpsd_parser_v9.hpp>
 
 namespace gpsd_client
 {
-
-class GpsdParser::GpsdParserImpl {
-
-public:
-  GpsdParserImpl(const std::string& host, const int port) {}
-
-  bool getData(
-    gps_msgs::msg::GNSSFix& fix_msg,
-    gps_msgs::msg::GNSSStatus& status_msg)
-    {
-      return true;
-    }
-};
 
 GpsdParser::GpsdParser(const std::string& host, const int port) :
   pimpl_(new GpsdParserImpl(host, port))
