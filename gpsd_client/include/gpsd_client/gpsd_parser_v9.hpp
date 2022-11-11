@@ -12,7 +12,17 @@ class GpsdParser::GpsdParserImpl
   public:
     GpsdParserImpl(const std::string& host, const int port)
     {
+      char port_s[12];
+      snprintf(port_s, 12, "%d", port);
+      gps_data_t* resp = nullptr;
 
+      gps_ = std::unique_ptr<gpsmm>(new gpsmm(host.c_str(), port_s));
+      resp = gps_->stream(WATCH_ENABLE);
+      if (resp == nullptr)
+      {
+        // Indicate problem here
+        gps_ = nullptr;
+      }
     }
 
     bool getData(

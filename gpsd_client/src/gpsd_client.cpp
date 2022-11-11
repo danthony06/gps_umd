@@ -13,7 +13,6 @@ namespace gpsd_client
 {
 GPSDClientComponent::GPSDClientComponent(const rclcpp::NodeOptions& options) :
   Node("gpsd_client", options),
-  gps_(nullptr),
   use_gps_time_(true),
   check_fix_by_variance_(true),
   frame_id_("gps"),
