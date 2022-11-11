@@ -88,7 +88,7 @@ class GpsdParser::GpsdParserImpl
           break;
       }
 
-      switch (p->status)
+      switch (p->fix.status)
       {
         case STATUS_NO_FIX:
           fix_msg.fix_type = gps_msgs::msg::GNSSFix::FIX_NONE;
