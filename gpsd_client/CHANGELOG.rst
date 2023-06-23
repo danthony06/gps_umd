@@ -2,8 +2,8 @@
 Changelog for package gpsd_client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.10 (2023-06-23)
+-------------------
 * Backport of https://github.com/swri-robotics/gps_umd/pull/80 (`#81 <https://github.com/danthony06/gps_umd/issues/81>`_)
 * Contributors: David Anthony, Aposhian
 
