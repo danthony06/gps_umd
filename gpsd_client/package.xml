@@ -2,10 +2,10 @@
 <package format="3">
   <name>gpsd_client</name>
   <version>2.0.4</version>
-  <description>connects to a GPSd server and broadcasts GPS fixes 
-   using the NavSatFix message</description>
+  <description>Wraps the GPSd library and broadcasts its information to a ROS 2 system</description>
 
   <author>P. J. Reed</author>
+  <author email="david.anthony@swri.org">David Anthony</author>
   <author email="ken@tossell.net">Ken Tossell</author>
   <author email="rob@umd.edu">Rob Thomson</author>
   <maintainer email="swri-robotics@swri.org">Southwest Research Institute</maintainer>
@@ -15,8 +15,9 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>libgps</depend>
+  <depend>class_loader</depend>
   <depend>gps_msgs</depend>
+  <depend>libgps</depend>
   <depend>pkg-config</depend>
   <depend>rclcpp</depend>
   <depend>rclcpp_components</depend>

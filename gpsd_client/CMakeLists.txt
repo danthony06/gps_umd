@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 project(gpsd_client)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 find_package(ament_cmake REQUIRED)
-
+find_package(class_loader REQUIRED)
 find_package(gps_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
@@ -30,45 +30,60 @@ else()
   message(STATUS "Found libgps: ${libgps_LIBRARIES}")
 endif()
 
-add_library(${PROJECT_NAME} SHARED
-  src/client.cpp
-)
-target_include_directories(${PROJECT_NAME}
-  PUBLIC
-  ${libgps_INCLUDE_DIRS}
-)
-target_compile_definitions(${PROJECT_NAME}
-  PRIVATE "COMPOSITION_BUILDING_DLL"
-)
-rclcpp_components_register_nodes(${PROJECT_NAME} "gpsd_client::GPSDClientComponent")
-target_link_libraries(${PROJECT_NAME}
-  ${libgps_LIBRARIES}
-)
-ament_target_dependencies(${PROJECT_NAME}
-  "gps_msgs"
-  "rclcpp"
-  "rclcpp_components"
-  "sensor_msgs"
-)
+include_directories(include)
+
+add_library(
+  gpsd_client_nodes
+    SHARED
+      lib/gpsd_client_node.cpp
+      lib/gpsd_parser.cpp)
+
+target_compile_definitions(gpsd_client_nodes
+  PRIVATE "COMPOSITION_BUILDING_DLL")
+
+target_include_directories(
+  gpsd_client_nodes
+    PRIVATE
+      include
+      ${libgps_INCLUDE_DIRS})
+
+target_link_libraries(
+  gpsd_client_nodes
+    PUBLIC
+      rclcpp::rclcpp
+      rclcpp_components::component
+      ${rclcpp_LIBRARIES}
+      ${gps_msgs_TARGETS}
+      ${sensor_msgs_TARGETS}
+    PRIVATE
+      ${libgps_LIBRARIES})
+
+rclcpp_components_register_nodes(gpsd_client_nodes "gpsd_client::GpsdClientNode")
+ament_environment_hooks("${ament_cmake_package_templates_ENVIRONMENT_HOOK_LIBRARY_PATH}")
+
+add_executable(gpsd_client src/gpsd_client.cpp)
+target_link_libraries(
+  gpsd_client
+    PRIVATE
+      gpsd_client_nodes
+      class_loader::class_loader
+      rclcpp::rclcpp)
 
 #############
 ## Install ##
 #############
-
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS gpsd_client_nodes
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-)
+  RUNTIME DESTINATION bin)
+
+install(TARGETS gpsd_client
+  DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY launch
     DESTINATION share/${PROJECT_NAME}/)
 
 install(DIRECTORY config
     DESTINATION share/${PROJECT_NAME}/)
-
-ament_export_dependencies(ament_cmake)
-ament_export_dependencies(rclcpp)
-ament_export_libraries(${PROJECT_NAME})
 
 ament_package()
