@@ -9,7 +9,6 @@
 namespace gpsd_client
 {
 
-class AbstractGpsdParserImpl;
 
 class GpsdParser
 {
@@ -20,6 +19,7 @@ public:
   gps_msgs::msg::GNSS parse(const gps_data_t& data);
 
 private:
+  class AbstractGpsdParserImpl;
   std::unique_ptr<AbstractGpsdParserImpl> pimpl_;
 
 };
