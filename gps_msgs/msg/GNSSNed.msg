@@ -1,0 +1,10 @@
+float64 rel_position_north
+float64 rel_position_east
+float64 rel_position_down
+
+float64 rel_position_length
+float64 rel_position_heading
+
+float64 rel_velocity_north
+float64 rel_velocity_east
+float64 rel_velocity_down
