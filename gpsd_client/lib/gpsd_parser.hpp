@@ -1,6 +1,7 @@
-#ifndef GPSD_CLIENT_GPSD_PARSER_HPP_
-#define GPSD_CLIENT_GPSD_PARSER_HPP_
+#ifndef GPSD_CLIENT_GPSD_PARSER_FACTORY_HPP_
+#define GPSD_CLIENT_GPSD_PARSER_FACTORY_HPP_
 
+#include <functional>
 #include <memory>
 #include <gps.h>
 
@@ -12,18 +13,8 @@ class GpsdParser
 {
 public:
   explicit GpsdParser();
-  GpsdParser(const GpsdParser& other); // Copy
-  GpsdParser(GpsdParser&& other); // Move
-  virtual ~GpsdParser();
-  GpsdParser& operator=(const GpsdParser& other);
-  GpsdParser& operator=(GpsdParser&& other) = default; // Move assign
 
-  gps_msgs::msg::GNSS parse(const gps_data_t& data) const;
-
-private:
-  class AbstractGpsdParserImpl;
-  std::unique_ptr<AbstractGpsdParserImpl> pimpl_;
-
+  std::function<gps_msgs::msg::GNSS(const gps_data_t&)> parse;
 };
 
 }
