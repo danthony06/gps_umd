@@ -5,10 +5,13 @@
 
 namespace gpsd_client
 {
-class GpsdParserV11 : AbstractGpsdParserImpl
+class GpsdParserV11 : public AbstractGpsdParserImpl
 {
 public:
-  gps_msgs::msg::GNSS parser(const gps_data_t& data)
+  GpsdParserV11() {}
+  ~GpsdParserV11() {};
+
+  gps_msgs::msg::GNSS parse(const gps_data_t& data) override
   {
     gps_msgs::msg::GNSS msg;
 

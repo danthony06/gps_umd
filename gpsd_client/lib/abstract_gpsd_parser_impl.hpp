@@ -9,7 +9,7 @@ namespace gpsd_client
 class AbstractGpsdParserImpl
 {
 public:
-  virtual ~AbstractGpsdParserImpl() = default;
+  ~AbstractGpsdParserImpl() {};
   virtual gps_msgs::msg::GNSS parse(const gps_data_t& data) = 0;
 };
 

@@ -1,21 +1,38 @@
 #include "gpsd_parser.hpp"
-#include "gpsd_parser_v11.hpp"
+//#include "gpsd_parser_V11.hpp"
 
 namespace gpsd_client
 {
-GpsdParser::GpsdParser()
+class GpsdParser::AbstractGpsdParserImpl
 {
-  pimpl_ = std::make_unique<GpsdParserV11>();
+public:
+  AbstractGpsdParserImpl() {}
+  gps_msgs::msg::GNSS parse(const gps_data_t& data) const
+  {
+   gps_msgs::msg::GNSS msg;
+   return msg;
+  }
+
+};
+
+GpsdParser::GpsdParser() :
+  pimpl_(new AbstractGpsdParserImpl())
+{
+
 }
 
-GpsdParser::~GpsdParser() = default;
-
-gps_msgs::msg::GNSS GpsdParser::parse(const gps_data_t& data)
+GpsdParser::GpsdParser(const GpsdParser& other) :
+  pimpl_(new AbstractGpsdParserImpl())
 {
-  return pimpl_->parse(data);
 
 }
 
+GpsdParser::~GpsdParser() {}
 
+GpsdParser& GpsdParser::operator=(const GpsdParser& other)
+{
+  pimpl_ = std::unique_ptr<AbstractGpsdParserImpl>(new AbstractGpsdParserImpl());
+  return *this;
+}
 
 }

@@ -8,15 +8,17 @@
 
 namespace gpsd_client
 {
-
-
 class GpsdParser
 {
 public:
   explicit GpsdParser();
-  ~GpsdParser();
+  GpsdParser(const GpsdParser& other); // Copy
+  GpsdParser(GpsdParser&& other); // Move
+  virtual ~GpsdParser();
+  GpsdParser& operator=(const GpsdParser& other);
+  GpsdParser& operator=(GpsdParser&& other) = default; // Move assign
 
-  gps_msgs::msg::GNSS parse(const gps_data_t& data);
+  gps_msgs::msg::GNSS parse(const gps_data_t& data) const;
 
 private:
   class AbstractGpsdParserImpl;
