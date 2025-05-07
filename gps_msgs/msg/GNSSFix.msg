@@ -17,7 +17,7 @@ int32 GNSS_STATUS_TIME=7
 int32 GNSS_STATUS_SIM=8
 int32 GNSS_STATUS_PPS_FIX=9
 
-int32 status
+int32 status 0
 
 # Many of these values would be better off defaulting to NaN, but that
 # is currently not implemented in ROS 2
@@ -26,7 +26,7 @@ float64 uncertainty_time
 # degrees
 float64 latitude
 # meters
-float64 uncertainty_latitutde
+float64 uncertainty_latitude
 # degrees
 float64 longitude
 # meters
@@ -48,7 +48,7 @@ float64 climb
 # meters / second
 float64 uncertainty_climb
 # 2D horizontal error in meters. Exact definition is manufacturer dependent
-float64 uncertainity_horizontal_position
+float64 uncertainty_horizontal_position
 # 3D sphereical error in meters. Exact definition is manufacturer dependent
 float64 uncertainty_position
 # meters. Positive is MSL above WGS84

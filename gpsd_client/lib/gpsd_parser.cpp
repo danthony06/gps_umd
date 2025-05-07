@@ -36,10 +36,45 @@ gps_msgs::msg::GNSS GpsdParser::make_message()
   // to correctly initialize a new message
   gps_msgs::msg::GNSS msg;
 
+  msg.fix.uncertainty_time = std::numeric_limits<double>::quiet_NaN();
   msg.fix.latitude = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.uncertainty_latitude = std::numeric_limits<double>::quiet_NaN();
   msg.fix.longitude = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.uncertainty_longitude = std::numeric_limits<double>::quiet_NaN();
   msg.fix.altitude_ellipsoid = std::numeric_limits<double>::quiet_NaN();
   msg.fix.altitude_msl = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.uncertainity_vertical_position = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.track = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.uncertainty_track = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.speed = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.uncertainty_speed = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.climb = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.uncertainty_climb = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.uncertainty_horizontal_position = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.uncertainty_position = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.geoid_separation = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.track_magnetic = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.magnetic_variation = std::numeric_limits<double>::quiet_NaN();
+
+  msg.fix.ecef.x = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.y = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.z = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.position_accuracy = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.velocity_x = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.velocity_y = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.velocity_z = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.velocity_uncertainty_x = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.velocity_uncertainty_y = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ecef.velocity_uncertainty_z = std::numeric_limits<double>::quiet_NaN();
+
+  msg.fix.ned.rel_position_north = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ned.rel_position_east = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ned.rel_position_down = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ned.rel_position_length = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ned.rel_position_heading = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ned.rel_velocity_north = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ned.rel_velocity_east = std::numeric_limits<double>::quiet_NaN();
+  msg.fix.ned.rel_velocity_down = std::numeric_limits<double>::quiet_NaN();
 
   return msg;
 }
