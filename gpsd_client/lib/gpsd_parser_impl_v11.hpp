@@ -12,7 +12,7 @@ public:
   explicit GpsdParserImpl();
   ~GpsdParserImpl() override;
 
-  gps_msgs::msg::GNSS parse(const gps_data_t& data) override;
+  void parse(const gps_data_t& data, gps_msgs::msg::GNSS& msg) override;
 };
 }
 

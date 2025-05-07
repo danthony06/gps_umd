@@ -11,7 +11,7 @@ class GpsdParserImplBase
 {
 public:
   virtual ~GpsdParserImplBase() = default;
-  virtual gps_msgs::msg::GNSS parse(const gps_data_t& data) = 0;
+  virtual void parse(const gps_data_t& data, gps_msgs::msg::GNSS& msg) = 0;
 };
 
 }

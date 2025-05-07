@@ -24,7 +24,7 @@ gps_msgs::msg::GNSS GpsdParser::parse(const gps_data_t& data)
   auto msg = make_message();
   if (!pimpl_) { return msg; }
 
-  pimpl_->parse(data);
+  pimpl_->parse(data, msg);
 
   return msg;
 }
