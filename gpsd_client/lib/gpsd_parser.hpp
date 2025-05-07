@@ -1,5 +1,5 @@
-#ifndef GPSD_CLIENT_GPSD_PARSER_FACTORY_HPP_
-#define GPSD_CLIENT_GPSD_PARSER_FACTORY_HPP_
+#ifndef GPSD_CLIENT_GPSD_PARSER_HPP_
+#define GPSD_CLIENT_GPSD_PARSER_HPP_
 
 #include <functional>
 #include <memory>
@@ -9,12 +9,23 @@
 
 namespace gpsd_client
 {
+
+class GpsdParserImplBase;
+
 class GpsdParser
 {
 public:
   explicit GpsdParser();
+  ~GpsdParser();
+  GpsdParser(const GpsdParser&) = delete;
+  GpsdParser(GpsdParser&& other) noexcept;
+  GpsdParser& operator=(GpsdParser&& other) noexcept;
 
-  std::function<gps_msgs::msg::GNSS(const gps_data_t&)> parse;
+  void parse(const gps_data_t& data);
+
+private:
+  std::unique_ptr<GpsdParserImplBase> pimpl_;
+
 };
 
 }
