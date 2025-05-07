@@ -2,11 +2,11 @@
 
 namespace gpsd_client
 {
-GpsdParserImplV11::GpsdParserImplV11() {}
+GpsdParserImpl::GpsdParserImpl() {}
 
-GpsdParserImplV11::~GpsdParserImplV11() {}
+GpsdParserImpl::~GpsdParserImpl() {}
 
-void GpsdParserImplV11::parse(const gps_data_t& data)
+gps_msgs::msg::GNSS GpsdParserImpl::parse(const gps_data_t& data)
 {
 
 }

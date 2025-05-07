@@ -6,13 +6,13 @@
 
 namespace gpsd_client
 {
-class GpsdParserImplV11 : public GpsdParserImplBase
+class GpsdParserImpl : public GpsdParserImplBase
 {
 public:
-  explicit GpsdParserImplV11();
-  ~GpsdParserImplV11() override;
+  explicit GpsdParserImpl();
+  ~GpsdParserImpl() override;
 
-  void parse(const gps_data_t& data) override;
+  gps_msgs::msg::GNSS parse(const gps_data_t& data) override;
 };
 }
 

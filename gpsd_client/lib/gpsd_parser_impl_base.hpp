@@ -3,13 +3,15 @@
 
 #include "gps.h"
 
+#include <gps_msgs/msg/gnss.hpp>
+
 namespace gpsd_client
 {
 class GpsdParserImplBase
 {
 public:
   virtual ~GpsdParserImplBase() = default;
-  virtual void parse(const gps_data_t& data) = 0;
+  virtual gps_msgs::msg::GNSS parse(const gps_data_t& data) = 0;
 };
 
 }

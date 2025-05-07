@@ -21,11 +21,11 @@ public:
   GpsdParser(GpsdParser&& other) noexcept;
   GpsdParser& operator=(GpsdParser&& other) noexcept;
 
-  void parse(const gps_data_t& data);
+  gps_msgs::msg::GNSS parse(const gps_data_t& data);
 
 private:
   std::unique_ptr<GpsdParserImplBase> pimpl_;
-
+  gps_msgs::msg::GNSS make_message();
 };
 
 }
