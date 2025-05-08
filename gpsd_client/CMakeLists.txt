@@ -37,7 +37,9 @@ add_library(
     SHARED
       lib/gpsd_client_node.cpp
       lib/gpsd_parser.cpp
-      lib/gpsd_parser_impl_v11.cpp)
+      lib/gpsd_parser_impl_v11.cpp
+      lib/gpsd_reader_impl.cpp
+      lib/gpsd_reader.cpp)
 
 target_compile_definitions(gpsd_client_nodes
   PRIVATE "COMPOSITION_BUILDING_DLL")
