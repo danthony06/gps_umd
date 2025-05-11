@@ -10,7 +10,7 @@ namespace gpsd_client
 class GpsdReaderImpl : public GpsdReaderImplBase
 {
 public:
-  explicit GpsdReaderImpl();
+  explicit GpsdReaderImpl(const std::string& host, const std::string& port);
   ~GpsdReaderImpl() override;
   gps_data_t stream(const int flags) override;
   bool waiting(const int t) override;

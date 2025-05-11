@@ -4,7 +4,7 @@
 namespace gpsd_client
 {
 GpsdReader::GpsdReader() :
-  pimpl_(std::make_unique<GpsdReaderImpl>())
+  pimpl_(std::make_unique<GpsdReaderImpl>("localhost", "123"))
 {
 
 }

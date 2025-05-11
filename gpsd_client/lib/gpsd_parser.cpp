@@ -6,7 +6,7 @@
 
 #include "gpsd_parser.hpp"
 
-#if GPSD_API_MAJOR_VERSION == 11
+#if GPSD_API_MAJOR_VERSION >= 11
 #include "gpsd_parser_impl_v11.hpp"
 #endif
 
