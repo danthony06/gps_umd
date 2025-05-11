@@ -7,14 +7,14 @@
 
 namespace gpsd_client
 {
-class GpsdReaderImpl : public GpsdReaderImplBase
+class GpsdReaderImplV11 : public GpsdReaderImplBase
 {
 public:
-  explicit GpsdReaderImpl(const std::string& host, const std::string& port);
-  ~GpsdReaderImpl() override;
-  gps_data_t stream(const int flags) override;
+  explicit GpsdReaderImplV11(const std::string& host, const std::string& port);
+  ~GpsdReaderImplV11() override;
+  std::unique_ptr<gps_data_t> stream(const int flags) override;
   bool waiting(const int t) override;
-  gps_data_t read() override;
+  std::unique_ptr<gps_data_t> read() override;
 
 private:
   std::unique_ptr<gpsmm> gps_;

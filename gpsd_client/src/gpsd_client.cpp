@@ -1,6 +1,6 @@
 #include <memory>
-#include <gpsd_client/gpsd_client_node.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include "gpsd_client_node.hpp"
 
 int main(int argc, char* argv[])
 {

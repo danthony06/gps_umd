@@ -3,7 +3,7 @@
 
 #include <functional>
 #include <memory>
-#include <gps.h>
+#include "types.hpp"
 
 namespace gpsd_client
 {
@@ -12,15 +12,15 @@ class GpsdReaderImplBase;
 class GpsdReader
 {
 public:
-  explicit GpsdReader();
+  explicit GpsdReader(const std::string& host, const std::string& port);
   ~GpsdReader();
   GpsdReader(const GpsdReader&) = delete;
   GpsdReader(GpsdReader&& other) noexcept;
-  GpsdReader& operator=(GpsdReader&& other) noexcept;
+  GpsdReader& operator=(GpsdReader&& other) = delete;
 
-  gps_data_t stream(const int flags);
+  std::unique_ptr<gnss_data> stream();
   bool waiting(const int t);
-  gps_data_t read();
+  std::unique_ptr<gnss_data> read();
 
 private:
   std::unique_ptr<GpsdReaderImplBase> pimpl_;

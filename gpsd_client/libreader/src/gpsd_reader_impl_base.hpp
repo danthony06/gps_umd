@@ -10,14 +10,11 @@ namespace gpsd_client
 class GpsdReaderImplBase
 {
 public:
-  explicit GpsdReaderImplBase(const std::string& host, const std::string& port)
-  {
-
-  }
+  explicit GpsdReaderImplBase(const std::string& host, const std::string& port) {}
   virtual ~GpsdReaderImplBase() = default;
-  virtual gps_data_t stream(const int flags) = 0;
+  virtual std::unique_ptr<gps_data_t> stream(const int flags) = 0;
   virtual bool waiting(const int t) = 0;
-  virtual gps_data_t read() = 0;
+  virtual std::unique_ptr<gps_data_t> read() = 0;
 };
 }
 
