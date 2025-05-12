@@ -48,7 +48,9 @@ GpsdClientNode::~GpsdClientNode()
 
 void GpsdClientNode::timer_callback()
 {
-  while (gps_reader_->waiting(0))
+  if (!gps_reader_->waiting(1e6)) { return; }
+
+  while (!gps_reader_->waiting(0))
   {
     data_ = std::move(gps_reader_->read());
   }
@@ -66,6 +68,12 @@ void GpsdClientNode::timer_callback()
 
 void GpsdClientNode::publish_gps_fix()
 {
+  gps_msgs::msg::GPSFix fix;
+  gps_msgs::msg::GPSStatus status;
+
+  status.header.stamp.nanosec = data_->online.tv_nsec;
+  status.header.stamp.sec = data_->online.tv_sec;
+  status.header.frame_id = frame_id_;
 
 }
 

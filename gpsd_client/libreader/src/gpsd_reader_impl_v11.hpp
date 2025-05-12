@@ -12,9 +12,9 @@ class GpsdReaderImplV11 : public GpsdReaderImplBase
 public:
   explicit GpsdReaderImplV11(const std::string& host, const std::string& port);
   ~GpsdReaderImplV11() override;
-  std::unique_ptr<gps_data_t> stream(const int flags) override;
+  std::unique_ptr<gnss_data> stream() override;
   bool waiting(const int t) override;
-  std::unique_ptr<gps_data_t> read() override;
+  std::unique_ptr<gnss_data> read() override;
 
 private:
   std::unique_ptr<gpsmm> gps_;

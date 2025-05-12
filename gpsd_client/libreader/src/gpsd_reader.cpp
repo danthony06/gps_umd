@@ -19,7 +19,7 @@ GpsdReader::~GpsdReader() {}
 std::unique_ptr<gnss_data> GpsdReader::stream()
 {
   std::unique_ptr<gnss_data> data_;
-  auto raw_data = std::move(pimpl_->stream(WATCH_ENABLE));
+  auto raw_data = std::move(pimpl_->stream());
   return std::move(data_);
 }
 
