@@ -2,8 +2,8 @@
 Changelog for package gpsd_client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.5 (2025-05-20)
+------------------
 * Removing all ament_target_dependencies() calls (`#111 <https://github.com/swri-robotics/gps_umd/issues/111>`_)
 * Changing hard coded default port value and improving string allocation (`#101 <https://github.com/swri-robotics/gps_umd/issues/101>`_)
 * Updating package search (`#99 <https://github.com/swri-robotics/gps_umd/issues/99>`_)
