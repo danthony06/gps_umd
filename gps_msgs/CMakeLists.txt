@@ -89,9 +89,10 @@ if(BUILD_TESTING)
   ament_add_pytest_test(test_message_fields test/test_message_fields.py)
 endif()
 
-ament_package()
-
 install(
   FILES ros1_ros2_mapping.yaml
   DESTINATION share/${PROJECT_NAME}
 )
+
+ament_package()
+
